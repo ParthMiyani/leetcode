@@ -1,3 +1,4 @@
+// Source: https://leetcode.com/problems/find-the-duplicate-number/
 class Solution {
     public int findDuplicate(int[] nums) {
         // floyde tortoise and hare
