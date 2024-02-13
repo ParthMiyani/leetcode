@@ -1,4 +1,4 @@
-// Source: https://leetcode.com/problems/diameter-of-binary-tree/
+// Source: https://leetcode.com/problems/balanced-binary-tree/
 
 // Definition for a binary tree node.
 class TreeNode {
@@ -21,22 +21,22 @@ class TreeNode {
 }
 
 class Solution {
-    private int res = 0;
+    private boolean isBal = true;
 
     private int dfs(TreeNode node) {
         if (node == null) {
             return 0;
         }
-        int maxLeft = dfs(node.left);
-        int maxRight = dfs(node.right);
-        res = Math.max(res, (maxLeft + maxRight));
-
-        return 1 + Math.max(maxLeft, maxRight);
+        int left = dfs(node.left);
+        int right = dfs(node.right);
+        if (Math.abs(left - right) > 1) {
+            isBal = false;
+        }
+        return 1 + Math.max(left, right);
     }
 
-    public int diameterOfBinaryTree(TreeNode root) {
-        res = 0;
+    public boolean isBalanced(TreeNode root) {
         dfs(root);
-        return res;
+        return isBal;
     }
 }

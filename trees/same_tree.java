@@ -1,4 +1,4 @@
-// Source: https://leetcode.com/problems/invert-binary-tree/
+// Source: https://leetcode.com/problems/same-tree/
 // Definition for a binary tree node.
 class TreeNode {
     int val;
@@ -20,18 +20,14 @@ class TreeNode {
 }
 
 class Solution {
-    public TreeNode invertTree(TreeNode root) {
-        if (root == null) {
-            return null;
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if (p == null && q == null) {
+            return true;
+        }
+        if (p == null || q == null || p.val != q.val) {
+            return false;
         }
 
-        TreeNode tmp = root.left;
-        root.left = root.right;
-        root.right = tmp;
-
-        invertTree(root.left);
-        invertTree(root.right);
-
-        return root;
+        return (isSameTree(p.left, q.left) && isSameTree(p.right, q.right));
     }
 }
